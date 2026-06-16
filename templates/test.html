@@ -4,20 +4,16 @@
 <h1>Hello {{name}}</h1>
 <h2>Here is an interesting quote for you:</h2>
 {{quote}}
-<img src="https://thumbs.dreamstime.com/b/cute-cartoon-owl-programmer-working-laptop-night-cozy-workspace-coffee-desk-lamps-moonlit-city-view-developer-445491718.jpg">
+<img src="https://thumbs.dreamstime.com/b/cartoon-cat-motivational-believe-yourself-sign-cheerful-style-orange-holding-set-playful-beige-background-ink-361283783.jpg">
 
 <div>
 {% endblock%} 
 
-<!-- to pick a random quote -->
 
-quotes = [ "'If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is.' -- John Louis von Neumann ",
-"'Computer science is no more about computers than astronomy is about telescopes' --  Edsger Dijkstra ",
-"'To understand recursion you must first understand recursion..' -- Unknown",
-"'You look at things that are and ask, why? I dream of things that never were and ask, why not?' -- Unknown",
-"'Mathematics is the key and door to the sciences.' -- Galileo Galilei",
-"'Not everyone will understand your journey. Thats fine. Its not their journey to make sense of. Its yours.' -- Unknown"  ]
-randomNumber = randint(0,len(quotes)-1)
+
+quotes = live_quote
+
+<!-- to pick a random quote -->
 quote = quotes[randomNumber]
 
 

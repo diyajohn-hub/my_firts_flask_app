@@ -1,6 +1,5 @@
-from random import randint
 from flask import Flask, render_template
-import random
+import requests
 
 app = Flask(__name__)
 
@@ -11,17 +10,16 @@ def index():
 @app.route("/hello/<name>")
 @app.route("/hello/<name>/")
 def hello_name(name):
-    quotes = [ "'If people do not believe that mathematics is simple, it is only because they do not realize how complicated life is.' -- John Louis von Neumann ",
-"'Computer science is no more about computers than astronomy is about telescopes' --  Edsger Dijkstra ",
-"'To understand recursion you must first understand recursion..' -- Unknown",
-"'You look at things that are and ask, why? I dream of things that never were and ask, why not?' -- Unknown",
-"'Mathematics is the key and door to the sciences.' -- Galileo Galilei",
-"'Not everyone will understand your journey. Thats fine. Its not their journey to make sense of. Its yours.' -- Unknown"  ]
-    
-    #to randomize the quotes
-    randomNumber = randint(0,len(quotes)-1)
-    quote = quotes[randomNumber] 
-    return render_template("test.html", **locals())
+    try:
+        response = requests.get("https://api.adviceslip.com/advice")
+        data = response.json()
+
+        live_quote = data["slip"]["advice"]
+    except Exception:
+        live_quote = "The code is working, but the live quote server is taking a nap"
+
+    return render_template('test.html', name=name, quote=live_quote)    
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=80)
